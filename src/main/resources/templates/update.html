@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>가격 업데이트 알림</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #9AD756;
+            padding: 10px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .content {
+            text-align: center;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+        }
+        .content h2 {
+            color: #ff7f00;
+        }
+        .content a {
+            background-color: #9AD756;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .content a:hover {
+            background-color: #e68a00;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>가격 업데이트 알림</h1>
+    </div>
+    <img src="{your-logo-url}/logo/dapanda.png" alt="Dapanda Logo" width="150" height="150" class="center">
+    <div class="content">
+        <p>Dapanda를 이용해 주셔서 감사합니다.</p>
+        <p>최고 입찰가를 상회하는 입찰가가 제시되었습니다.</p>
+        <p>이제는 최고 입찰가가 아닙니다.</p>
+        <p>더 높은 금액을 제시하려면 마이 페이지에서 재입찰 신청을 하십시오.</p>
+        <img th:src="${productImage}" alt="Product Image">
+        <p><strong><span th:text="${productName}"></span></strong></p>
+        <h2>현재 가격: <span th:text="${currentPrice}"></span></h2>
+        <a th:href="${productUrl}">Bid again here</a>
+        <br><br>
+    </div>
+    <hr>
+    <div class="footer">
+        <p>이 이메일은 발신 전용 이메일입니다.</p>
+        <p>연락 가능 시간: 09:00 ~ 18:00<br>영업일: 월~금<br> 휴일: 주말 및 공휴일</p>
+    </div>
+</div>
+</body>
+</html>

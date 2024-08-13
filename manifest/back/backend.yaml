@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dpd-be-spring-dep
+  name: dpd-be-spring-dep
+  namespace: dpd-be-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dpd-be-spring-dep
+  template:
+    metadata:
+      labels:
+        app: dpd-be-spring-dep
+    spec:
+      containers:
+        - image: {your-image-registry}/dapanda-backend-spring:1.120
+          name: dpd-be-spring-con
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "1024Mi"
+              cpu: "400m"
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: database-url
+            - name: MYSQL_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: mysql-username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: mysql-password
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: rabbitmq-username
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: rabbitmq-password
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: redis-password
+            - name: QUEUE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: queue-name
+            - name: EXCHANGE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: exchange-name
+            - name: ROUTING_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: dpd-be-spring-cm
+                  key: routing-key

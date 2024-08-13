@@ -1,0 +1,95 @@
+spring:
+  cloud:
+    compatibility-verifier:
+      enabled: false
+  datasource:
+    primary:
+      hikari:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: ${MYSQL_USERNAME}
+        password: ${MYSQL_PASSWORD}
+        jdbc-url: jdbc:mysql://${WRITE_DATABASE_URL}
+    secondary:
+      hikari:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: ${MYSQL_USERNAME}
+        password: ${MYSQL_PASSWORD}
+        jdbc-url: jdbc:mysql://${READ_DATABASE_URL}
+    hikari:
+      pool-name: Hikari
+      auto-commit: false
+  data:
+    redis:
+      host: ${REDIS_URL}
+      port: 6379
+      #username: ${REDIS_USERNAME}
+      password: ${REDIS_PASSWORD}
+      lettuce:
+        pool:
+          max-active: 5
+          max-idle: 5
+          min-idle: 2
+#spring:
+#  datasource:
+#    replication:
+#      driver-class-name: software.amazon.jdbc.Driver
+#      username: ${MYSQL_USERNAME}
+#      password: ${MYSQL_PASSWORD}
+#    #url: jdbc:mysql://${DATABASE_URL}:3306/django?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&autoReconnect=True
+#      write:
+#        name: write
+#        url: jdbc:aws-wrapper:mysql://${WRITE_DATABASE_URL}:3306/dapanda
+#      reads:
+#        - name: read1
+#          url: jdbc:aws-wrapper:mysql://${READ_DATABASE_URL}:3306/dapanda
+  application:
+    name: dapanda
+  jpa:
+    properties:
+      hibernate:
+        show-sql: 'true'
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: validate
+      dialect: org.hibernate.dialect.MySQLDialect
+  rabbitmq:
+    host: ${RABBITMQ_URL}
+    port: 5672
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+cloud:
+  aws:
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY}
+      secretKey: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2 # AWS SQS의 리전정보
+    stack:
+      auto: false
+    sqs:
+      queue:
+        name: ${SQS_NAME}	# AWS에서 생성한 Queue 이름
+        url: ${SQS_URL}		# AWS에서 생성한 Queue URL
+
+# RabbitMQ queue, exchange, routing-key 정보
+rabbitmq:
+  queue.name: ${QUEUE_NAME}
+  exchange.name: ${EXCHANGE_NAME}
+  routing.key: ${ROUTING_KEY}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  otlp:
+    metrics:
+      export:
+        url: http://opentelemetry-collector.istio-system.svc.cluster.local:4317
+        step: 10000s
+    tracing:
+      endpoint: http://opentelemetry-collector.istio-system.svc.cluster.local:4317
+  tracing:
+    sampling:
+      probability: 1.0

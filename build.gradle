@@ -1,0 +1,90 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.6'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+    //implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    //implementation 'org.springframework.boot:spring-boot-starter-cache'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    //implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    //implementation 'io.lettuce:lettuce-core:6.1.5.RELEASE'
+    //implementation 'org.springframework.kafka:spring-kafka'
+    //implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'
+    //runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
+    //implementation 'software.amazon.jdbc:aws-advanced-jdbc-wrapper:2.3.7'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.3'
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.0.1")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.1'
+    //implementation 'com.fasterxml.jackson.core:jackson-core:2.13.0'
+    //implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'com.amazonaws:aws-java-sdk-ses:1.12.429'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.0.12.RELEASE'
+    implementation 'org.json:json:20231013'
+
+    implementation 'com.zaxxer:HikariCP:5.0.0'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    runtimeOnly 'io.micrometer:micrometer-registry-otlp'
+
+    runtimeOnly 'io.micrometer:micrometer-tracing-bridge-otel'
+    //runtimeOnly 'io.opentelemetry:opentelemetry-exporter-otlp'
+    implementation 'io.opentelemetry:opentelemetry-api:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-context:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk-trace:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk-metrics:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk-common:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-extension-trace-propagators:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-exporter-common:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.29.0'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp-common:1.29.0'
+    implementation 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-api-semconv:1.29.0-alpha'
+
+    implementation 'io.opentelemetry.instrumentation:opentelemetry-logback-appender-1.0:1.29.0-alpha'
+
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

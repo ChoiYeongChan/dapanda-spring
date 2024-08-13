@@ -1,0 +1,36 @@
+# 버전 관리 시스템 디렉토리
+.git/
+.gitignore
+
+# 빌드 출력 디렉토리
+build/
+out/
+target/
+
+# Gradle 디렉토리 및 파일
+.gradle/
+gradlew
+gradlew.bat
+gradle.properties
+
+# 로컬 환경 설정 파일
+*.local
+*.log
+
+# IDE 설정 파일
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.vscode
+*.sublime-workspace
+
+# 기타 불필요한 파일
+*.class
+*.jar
+*.war
+*.ear
+.DS_Store
+*.swp
+*~

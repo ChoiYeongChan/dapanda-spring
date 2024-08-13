@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>판매 완료 알림</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #9AD756;
+            padding: 10px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            color: Black;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .content p {
+            margin: 10px 0;
+        }
+        .content .highlight {
+            font-weight: bold;
+            color: #ff7f00;
+        }
+        .content .link {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .footer a {
+            color: #1a0dab;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>판매 완료 알림</h1>
+    </div>
+    <img src="{your-logo-url}/logo/dapanda.png" alt="Dapanda Logo" width="150" height="150" class="center">
+    <div class="content">
+        <p>Dapanda를 이용해 주셔서 감사합니다.</p>
+        <p>물품이 판매되었습니다!</p>
+
+
+        <hr>
+
+        <h2>경매 낙찰 세부사항</h2>
+        <p><span class="highlight">물품명:</span> <span th:text="${productName}"></span></p>
+        <p><span class="highlight">물품 URL:</span> <a th:href="${productUrl}" class="link"><span th:text="${productUrl}"></span></a></p>
+        <p><span class="highlight">낙찰 가격:</span> <span th:text="${bidPrice}"></span></p>
+
+        <hr>
+
+        <h2>물품 배송 안내</h2>
+
+        <p><span class="highlight">배송지:</span> <span th:text="${address}"></span></p>
+        <hr>
+        <p>3 영업일 내에 위의 배송지로 물품을 보내주세요.</p>
+        <p>고객님의 만족을 최우선으로 생각하며, Dapanda에서 제공하는 서비스를 통해 최상의 경험을 하시길 바랍니다.</p>
+        <p>자세한 정보는 Dapanda 웹사이트를 방문해 주세요. Dapanda 웹사이트는 <a href="https://awscloudschool.online" class="link">https://awscloudschool.online</a>에서 확인하실 수 있습니다.</p>
+        <hr>
+
+    </div>
+    <div class="footer">
+        <p>이 이메일은 발신 전용 이메일입니다.</p>
+        <p>연락 가능 시간: 09:00 ~ 18:00<br>영업일: 월~금<br> 휴일: 주말 및 공휴일</p>
+    </div>
+</div>
+</body>
+</html>

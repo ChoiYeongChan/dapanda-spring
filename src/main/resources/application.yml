@@ -1,0 +1,82 @@
+spring:
+  cloud:
+    compatibility-verifier:
+      enabled: false
+  datasource:
+    primary:
+      hikari:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: {your-mysql-username}
+        password: {your-mysql-password}
+        jdbc-url: jdbc:mysql://{your-mysql-url}:3306/{your-schema-name}?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&autoReconnect=True
+    secondary:
+      hikari:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: { your-mysql-username }
+        password: { your-mysql-password }
+        jdbc-url: jdbc:mysql://{your-mysql-url}:3306/{your-schema-name}?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&autoReconnect=True
+    hikari:
+      pool-name: Hikari
+      auto-commit: false
+
+  application:
+    name: dapanda
+  jpa:
+    properties:
+      hibernate:
+        show-sql: 'true'
+        format_sql: 'true'
+      ddl-auto: validate
+  rabbitmq:
+    host: {your-rabbitmq-url}
+    port: 5672
+    username: {your-rabbitmq-username}
+    password: {your-rabbitmq-password}
+  #kafka:
+  #  producer:
+  #    bootstrap-servers: {your-kafka-url:9092}
+  #  consumer:
+  #    bootstrap-servers: {your-kafka-url:9092}
+  #    group-id: consumer_group01
+  #    auto-offset-reset: earliest
+  data:
+    redis:
+      host: {your-redis-url}
+      port: 6379
+      username: {your-redis-username}
+      password: {your-redis-password}
+      lettuce:
+        pool:
+          max-active: 5
+          max-idle: 5
+          min-idle: 2
+
+# RabbitMQ queue, exchange, routing-key 정보
+rabbitmq:
+  queue.name: sample.queue
+  exchange.name: sample.exchange
+  routing.key: sample.key
+#topic:
+#  name: my-topic
+cloud:
+  aws:
+    credentials:
+      accessKey: {your-aws-access-key}
+      secretKey: {your-aws-secret-key}
+    region:
+      static: ap-northeast-2 # AWS SQS의 리전정보
+    stack:
+      auto: false
+    sqs:
+      queue:
+        name: {your-sqs-name} # AWS에서 생성한 Queue 이름
+        url: {your-sqs-url} # AWS에서 생성한 Queue URL
+
+logging:
+  level:
+    root: INFO
+    com.example: DEBUG
+  pattern:
+    console: {"timestamp":"%d{yyyy-MM-dd'T'HH:mm:ss:SSSXXX}","level":"%-5level","logger":"%logger{36}","message":"%msg"}
